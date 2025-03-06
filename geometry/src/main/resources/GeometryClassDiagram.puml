@@ -1,0 +1,53 @@
+@startuml
+
+package geometry {
+    class Point2D {
+        - x: double
+        - y: double
+        --
+        + Point2D(x: double, y: double)
+        
+        + setX(x: dobule): void
+        + setY(y: double): void
+        + getX(): double
+        + getY(): double
+
+        + isOrigin(): boolean
+        + move(deltaX: double, deltaY: double): void
+
+        + distanceToOrigin(): double
+        + distanceTo(point: Point2D): double
+
+        + clone(): Point2D
+        + toString(): String
+    }
+
+    class Polygon {
+        - <u>numberOfInstances: int</u>
+
+        - polygon: Point2D[]
+        - id: int
+        --
+        + Polygon(Point2D[]: vertices)
+
+        + setVertex(point: Point2D, index: int): void
+        + getVertex(index: int): Point2D
+
+        + parimeter(): double
+        + longestSide(): double
+        + nearest(): Point2D
+        + move(deltaX: double, deltaY: double): void
+
+        + isTriangle(): boolean
+        + isRectangle(): boolean
+        + getId(): int
+        - <u>isCollinear(): boolean</u>
+
+        + clone(): Polygon
+        + toString(): String
+
+    }
+
+    Polygon "1" o-- "many" Point2D : contains
+}
+@enduml

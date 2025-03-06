@@ -1,0 +1,74 @@
+@startuml
+
+package time { 
+    class TimeStamp {
+        - hours: int
+        - minutes: int
+        - seconds: int
+        --
+        + TimeStamp()
+        + TimeStamp(hours: int)
+        + Timestamp(minutes: int, seconds: int)
+        + TimeStamp(hours: int, minutes: int, seconds: int)
+
+        + setHour(hour: int): void
+        + setMinutes(minutes: int): void
+        + setSeconds(seconds: int): void
+
+        + getHours(): int
+        + getMinutes(): int
+        + getSeconds(): int
+
+        + skipSecond(): void
+        + skipMinute(): void
+        + skipHour(): void
+        + skipTime(time: TimeStamp): void
+
+        + clone(): TimeStamp
+        + toString(): String
+        + <u>valid(hours: int, minutes: int, seconds: int): boolean</u>
+    }
+
+    class Date {
+        - day: int
+        - month: int
+        - year: int
+        --
+        + Date(day: int, month: int, year: int)
+        + Date(day: int, month: int, year: int, time: TimeStamp)
+
+        + setTime(time: TimeStamp): void
+        + setDay(day: int): void
+        + setMonth(month: int): void
+        + setYear(year: int): void
+
+        + getDay(): int
+        + getMonth(): int
+        + getYear(): int
+        + getTime(): TimeStamp
+
+        + skipDay(): void
+        + skipMonth(): void
+        + skipYear(): void
+        + skipHour(): void
+        + skipTime(time: TimeStamp): void
+
+        + clone(): Date
+        + toString(): String
+        + <u>valid(day: int, month: int, year: int): boolean</u>
+        - <u>getDaysInMonth(year: int, month: int): int</u>
+        - <u>isLeapYear(year: int): boolean</u>
+    }
+
+    interface Time {
+        + skipSecond(): void
+        + skipMinute(): void
+        + skipHour(): void
+        + skipTime(time: TimeStamp): void
+        + toString(): String
+    }
+
+    Time <|.. TimeStamp : implements
+    TimeStamp <|-- Date : inherits from
+}
+@enduml
