@@ -144,9 +144,14 @@ public class Polygon{
      */
     public boolean isRectangle() {
         int corners = 0;
-        for (int i = 0; i < polygon.length - 2; i++) {
+
+        for (int i = 0; i < polygon.length - 2 && corners <= 5; i++) {
             if (!isCollinear(polygon[i], polygon[i+1], polygon[i+2])) {
+                if (!isPerpendicular(polygon[i], polygon[i+1], polygon[i+2])) {
+                    return false; // If any angle isn't 90 degrees, it's not a rectangle
+                }
                 corners++;
+
             }
         }
 
@@ -209,4 +214,16 @@ public class Polygon{
             + p2.getX() * (p3.getY() - p1.getY()) 
             + p3.getX() * (p1.getY() - p2.getY()) == 0);
     }
+
+    private boolean isPerpendicular(Point2D p1, Point2D p2, Point2D p3) {
+        // Vectors: p1 -> p2 and p2 -> p3
+        double vector1X = p2.getX() - p1.getX();
+        double vector1Y = p2.getY() - p1.getY();
+        double vector2X = p3.getX() - p2.getX();
+        double vector2Y = p3.getY() - p2.getY();
+
+        // Check if the dot product of the vectors is zero (perpendicular)
+        return (vector1X * vector2X + vector1Y * vector2Y) == 0;
+    }
+
 }
