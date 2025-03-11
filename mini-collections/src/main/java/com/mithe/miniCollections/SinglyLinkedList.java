@@ -56,8 +56,14 @@ public class SinglyLinkedList<E>
     @Override
     public boolean add(E e) {
         Node newNode = new Node(e);
-        head.next = newNode;
-        head = newNode;
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            newNode.next = head;
+            head = newNode;
+        }
+
         size++;
         return true;
     }
