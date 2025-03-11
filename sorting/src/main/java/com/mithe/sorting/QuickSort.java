@@ -15,7 +15,7 @@ package com.mithe.sorting;
  * and is not stable.
  * </p>
  * 
- * @param <T> The type of elements in the array to be sorted. The elements must implement 
+ * @param T The type of elements in the array to be sorted. The elements must implement 
  *            the {@link Comparable} interface for comparison during sorting.
  */
 public class QuickSort 
@@ -31,7 +31,7 @@ public class QuickSort
      * </p>
      * 
      * @param arr The array of Comparable elements to be sorted.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     @Override
     public <T extends Comparable<T>> void sort(T[] arr) {
@@ -49,7 +49,7 @@ public class QuickSort
      * @param arr The array to be sorted.
      * @param lo The lower index of the subarray to be sorted.
      * @param hi The higher index of the subarray to be sorted.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     private <T extends Comparable<T>> void quickSort(T[] arr, int lo, int hi) {
         if (lo < hi) {
@@ -68,7 +68,7 @@ public class QuickSort
      * @param arr The array to be partitioned.
      * @param lo The lower index of the subarray to be partitioned.
      * @param hi The higher index of the subarray to be partitioned.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      * @return The index of the pivot element after partitioning.
      */
     private <T extends Comparable<T>> int partition(T[] arr, int lo, int hi) {

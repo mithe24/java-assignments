@@ -14,7 +14,7 @@ import java.util.Arrays;
  * It is a stable and in-place sorting algorithm.
  * </p>
  * 
- * @param <T> The type of elements in the array to be sorted. The elements must implement 
+ * @param T The type of elements in the array to be sorted. The elements must implement 
  *            the {@link Comparable} interface for comparison during sorting.
  */
 public class MergeSort
@@ -29,7 +29,7 @@ public class MergeSort
      * </p>
      * 
      * @param arr The array of Comparable elements to be sorted.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     @Override
     public <T extends Comparable<T>> void sort(T[] arr) {
@@ -42,7 +42,7 @@ public class MergeSort
      * @param arr The array to be sorted.
      * @param l The left index of the current subarray.
      * @param r The right index of the current subarray.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     private <T extends Comparable<T>> void mergeSort(T[] arr, int l, int r) {
         if (l < r) {
@@ -69,7 +69,7 @@ public class MergeSort
      * @param l The left index of the current subarray.
      * @param m The middle index that divides the subarray into two halves.
      * @param r The right index of the current subarray.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     private <T extends Comparable<T>> void merge(T[] arr, int l, int m, int r) {
 

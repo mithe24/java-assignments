@@ -12,7 +12,7 @@ package com.mithe.sorting;
  * less efficient than algorithms like MergeSort or QuickSort for larger arrays.
  * </p>
  * 
- * @param <T> The type of elements in the array to be sorted. The elements must implement 
+ * @param T The type of elements in the array to be sorted. The elements must implement 
  *            the {@link Comparable} interface for comparison during sorting.
  */
 public class BubbleSort
@@ -28,7 +28,7 @@ public class BubbleSort
      * as the largest unsorted element "bubbles" to its correct position.
      * </p>
      * 
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      * @param arr The array of Comparable elements to be sorted.
      */
     @Override

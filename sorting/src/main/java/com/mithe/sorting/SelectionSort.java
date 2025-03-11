@@ -13,7 +13,7 @@ package com.mithe.sorting;
  * large arrays.
  * </p>
  * 
- * @param <T> The type of elements in the array to be sorted. The elements must implement 
+ * @param T The type of elements in the array to be sorted. The elements must implement 
  *            the {@link Comparable} interface for comparison during sorting.
  */
 public class SelectionSort 
@@ -29,7 +29,7 @@ public class SelectionSort
      * </p>
      * 
      * @param arr The array of Comparable elements to be sorted.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     @Override
     public <T extends Comparable<T>> void sort(T[] arr) {

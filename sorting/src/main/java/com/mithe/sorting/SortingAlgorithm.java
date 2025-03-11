@@ -10,7 +10,7 @@ package com.mithe.sorting;
  * flexible and interchangeable sorting strategies.
  * </p>
  * 
- * @param <T> The type of elements to be sorted, which must implement the Comparable interface.
+ * @param T The type of elements to be sorted, which must implement the Comparable interface.
  */
 public interface SortingAlgorithm {
 
@@ -19,7 +19,7 @@ public interface SortingAlgorithm {
      * The algorithm should arrange the elements in ascending order.
      * 
      * @param a The array to be sorted.
-     * @param <T> The type of elements in the array, which must implement the Comparable interface.
+     * @param T The type of elements in the array, which must implement the Comparable interface.
      */
     public <T extends Comparable<T>> void sort(T[] a);
 }

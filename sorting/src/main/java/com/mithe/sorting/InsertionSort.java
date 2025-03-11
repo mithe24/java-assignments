@@ -14,7 +14,7 @@ package com.mithe.sorting;
  * is stable and in-place.
  * </p>
  * 
- * @param <T> The type of elements in the array to be sorted. The elements must implement 
+ * @param T The type of elements in the array to be sorted. The elements must implement 
  *            the {@link Comparable} interface for comparison during sorting.
  */
 public class InsertionSort 
@@ -30,7 +30,7 @@ public class InsertionSort
      * for the current element.
      * </p>
      * 
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      * @param arr The array of Comparable elements to be sorted.
      */
     @Override

@@ -31,7 +31,7 @@ public class HeapSort
      * </p>
      * 
      * @param arr The array of Comparable elements to be sorted.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     @Override
     public <T extends Comparable<T>> void sort(T[] arr) {
@@ -63,7 +63,7 @@ public class HeapSort
      * @param arr The array representing the heap.
      * @param n The size of the heap (i.e., the number of elements to consider).
      * @param i The index of the root element of the subtree to heapify.
-     * @param <T> The type of the elements in the array, which must implement {@link Comparable}.
+     * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     private <T extends Comparable<T>> void heapify(T[] arr, int n, int i) {
         T temp;
