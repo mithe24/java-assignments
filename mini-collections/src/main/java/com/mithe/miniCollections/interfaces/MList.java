@@ -9,6 +9,7 @@ public interface MList<E>
      * @param e the element to be added.
      * @return {@code true}.
      */
+    @Override
     boolean add(E e);
 
     /**
@@ -24,5 +25,6 @@ public interface MList<E>
      * Returns a iterator for this list.
      * @return iterator
      */
+    @Override
     MListIterator<E> iterator();
 }
