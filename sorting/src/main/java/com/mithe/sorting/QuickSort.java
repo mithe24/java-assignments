@@ -52,11 +52,19 @@ public class QuickSort
      * @param T The type of the elements in the array, which must implement {@link Comparable}.
      */
     private <T extends Comparable<T>> void quickSort(T[] arr, int lo, int hi) {
+        int p;
+        while (lo < hi) {
+            p = partition(arr, lo, hi);
+            quickSort(arr, lo, p - 1);
+            lo = p + 1;
+        }
+        /*
         if (lo < hi) {
             int p = partition(arr, lo, hi);
             quickSort(arr, lo, p - 1);
             quickSort(arr, p + 1, hi);
         }
+        */
     }
 
     /**
