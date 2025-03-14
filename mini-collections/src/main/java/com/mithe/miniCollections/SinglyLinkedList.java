@@ -1,5 +1,7 @@
 package com.mithe.miniCollections;
 
+import java.util.NoSuchElementException;
+
 import com.mithe.miniCollections.interfaces.MList;
 import com.mithe.miniCollections.interfaces.MListIterator;
 
@@ -32,6 +34,9 @@ public class SinglyLinkedList<E>
 
         @Override
         public E next() {
+            if (current.next == null) {
+                throw new NoSuchElementException("No more elements");
+            }
             E data = current.data;
 
             if (current.next != null) {
@@ -56,12 +61,15 @@ public class SinglyLinkedList<E>
     @Override
     public boolean add(E e) {
         Node newNode = new Node(e);
+        Node current = head;
 
         if (head == null) {
             head = newNode;
         } else {
-            newNode.next = head;
-            head = newNode;
+            while(current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
         }
 
         size++;
@@ -72,24 +80,23 @@ public class SinglyLinkedList<E>
     public boolean remove(Object o) {
         if (head == null) { return false; }
         
-        Node current = head;
-        Node prevNode = null;
+        Node current = head, prev = null;
         while (current != null) {
             if (current.data.equals(o)) {
-
-                if (prevNode != null) {
-                    prevNode.next = current.next;
+                if (prev == null) {
+                    head = null;
                 } else {
-                    head = current.next;
+                    prev.next = current.next;
                 }
 
                 size--;
                 return true;
             } else {
-                prevNode = current;
+                prev = current;
                 current = current.next;
             }
         }
+
         return false;
     }
 
@@ -101,7 +108,7 @@ public class SinglyLinkedList<E>
 
         int i = 0;
         Node current = head;
-        while (current != null && i != index) {
+        while (i != index) {
             current = current.next;
             i++;
         }
@@ -130,8 +137,11 @@ public class SinglyLinkedList<E>
         Node current = head;
 
         while (current != null) {
-            if (current.data.equals(o)) { return true; }
-            else { current = current.next; }
+            if (current.data.equals(o)) { 
+                return true; 
+            } else {
+                current = current.next;
+            }
         }
 
         return false;

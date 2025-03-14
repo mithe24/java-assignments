@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
+import java.util.Stack;
 
 // My interfaces
 import com.mithe.miniCollections.interfaces.MCollections;
@@ -22,45 +23,6 @@ public class BinaryTree<E extends Comparable<E>>
 
         private Node(E data) {
             this.data = data;
-        }
-    }
-
-    private class BinaryTreeIterator {
-
-        private Node current = root;
-
-        private E nextLeft() {
-            if (current.leftChild == null) {
-                throw new NoSuchElementException("No more elements");
-            } else {
-                E data = current.data;
-                current = current.leftChild;
-                return data;
-            }
-        }
-
-        private E nextRight() {
-            if (current.rightChild == null) {
-                throw new NoSuchElementException("No more elements");
-            } else {
-                E data = current.data;
-                current = current.rightChild;
-                return data;
-            }
-        }
-
-        private E nextParrent() {
-            if (current.parrent == null) {
-                throw new NoSuchElementException("No more elements");
-            } else {
-                E data = current.data;
-                current = current.parrent;
-                return data;
-            }
-        }
-
-        private boolean isLeaf() {
-            return current.leftChild == null;
         }
     }
 
@@ -125,7 +87,7 @@ public class BinaryTree<E extends Comparable<E>>
 
     @Override
     public Iterator<E> iterator() {
-        return new BinaryTreeIterator();
+        return new InOrderIterator();
     }
 
     @Override
@@ -171,12 +133,15 @@ public class BinaryTree<E extends Comparable<E>>
     }
 
     public Iterator<E> iteratorPreOrder() {
+        return new PreOrderIterator();
     }
 
     public Iterator<E> iteratorInOrder() {
+        return new InOrderIterator();
     }
 
     public Iterator<E> iteratorPostOrder() {
+        return new PostOrderIterator();
     }
 
     private boolean containsRecursively(Node node, E e) {
@@ -249,5 +214,122 @@ public class BinaryTree<E extends Comparable<E>>
         }
 
         return current;
+    }
+
+    private class InOrderIterator
+        implements Iterator<E> {
+
+        Stack<Node> stack;
+        Node lastVisited = null;
+
+        private void pushAllLeft(Node node) {
+            while (node != null) {
+                stack.push(node.leftChild);
+                node = node.leftChild;
+            }
+        }
+
+        public InOrderIterator() {
+            stack = new Stack<>();
+            if (root != null) {
+                pushAllLeft(root);
+            }
+        }
+
+        @Override
+        public E next() {
+            if (hasNext()) {
+                throw new NoSuchElementException("No more elements");
+            }
+
+            Node node = stack.pop();
+            if (node.rightChild != null) {
+                stack.push(node.rightChild);
+            }
+            
+            return node.data;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+    }
+
+
+    private class PreOrderIterator
+        implements Iterator<E> {
+
+        Stack<Node> stack;
+
+        public PreOrderIterator() {
+            stack = new Stack<>();
+            if (root != null) {
+                stack.push(root);
+            }
+        }
+
+        @Override
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException("No more elements");
+            }
+
+            Node node = stack.pop();
+            if (node.rightChild != null) {
+                stack.push(node.rightChild);
+            } 
+            if (node.leftChild != null) {
+                stack.push(node.leftChild);
+            }
+
+            return node.data;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+    }
+
+    private class PostOrderIterator
+        implements Iterator<E> {
+
+        Stack<Node> stack;
+        Node lastVisited = null;
+
+        public PostOrderIterator() {
+            stack = new Stack<>();
+            if (root != null) {
+                stack.push(root);
+            }
+        }
+
+        private void pushAllLeft(Node node) {
+            while (node != null) {
+                stack.push(node);
+                node = node.leftChild;
+            }
+        }
+
+        @Override
+        public E next() {
+            Node node = stack.peek();
+            
+            if (node.rightChild != null && node.rightChild != lastVisited) {
+                pushAllLeft(node.rightChild);
+            } else {
+                stack.pop();
+                lastVisited = node;
+                return node.data;
+            }
+
+            return next();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
     }
 }
