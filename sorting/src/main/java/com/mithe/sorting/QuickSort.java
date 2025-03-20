@@ -55,16 +55,13 @@ public class QuickSort
         int p;
         while (lo < hi) {
             p = partition(arr, lo, hi);
-            quickSort(arr, lo, p - 1);
-            lo = p + 1;
+            if (p - lo < hi - (p + 1)) {
+                quickSort(arr, lo, p - 1);
+            } else {
+                quickSort(arr, p + 1, hi);
+                hi = p - 1;
+            }
         }
-        /*
-        if (lo < hi) {
-            int p = partition(arr, lo, hi);
-            quickSort(arr, lo, p - 1);
-            quickSort(arr, p + 1, hi);
-        }
-        */
     }
 
     /**

@@ -1,13 +1,11 @@
 package com.mithe.miniCollections;
 
-// Java Util
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.Stack;
 
-// My interfaces
 import com.mithe.miniCollections.interfaces.MCollections;
 
 public class BinaryTree<E extends Comparable<E>>
@@ -220,7 +218,6 @@ public class BinaryTree<E extends Comparable<E>>
         implements Iterator<E> {
 
         Stack<Node> stack;
-        Node lastVisited = null;
 
         private void pushAllLeft(Node node) {
             while (node != null) {
