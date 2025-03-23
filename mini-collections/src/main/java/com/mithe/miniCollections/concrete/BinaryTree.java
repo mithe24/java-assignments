@@ -1,4 +1,4 @@
-package com.mithe.miniCollections;
+package com.mithe.miniCollections.concrete;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -6,12 +6,11 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.mithe.miniCollections.interfaces.MCollections;
+import com.mithe.miniCollections.abstracts.MAbstractCollection;
 
 public class BinaryTree<E extends Comparable<E>>
-    implements MCollections<E> {
+    extends MAbstractCollection<E> {
 
-    private int size = 0;
     private Node root;
 
     private class Node {
@@ -22,11 +21,6 @@ public class BinaryTree<E extends Comparable<E>>
         private Node(E data) {
             this.data = data;
         }
-    }
-
-    @Override
-    public int size() {
-        return size;
     }
 
     @Override
@@ -53,7 +47,7 @@ public class BinaryTree<E extends Comparable<E>>
             parrent.rightChild = newNode;
         }
 
-        size++;
+        super.size++;
         return true;
     }
 
@@ -69,18 +63,13 @@ public class BinaryTree<E extends Comparable<E>>
             } else if (comparison > 0) {
                 current = current.rightChild;
             } else {
-                size--;
+                super.size--;
                 treeRemove(current);
                 return true;
             }
         }
 
         return false;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return root == null;
     }
 
     @Override
@@ -91,12 +80,7 @@ public class BinaryTree<E extends Comparable<E>>
     @Override
     public void clear() {
         root = null;
-        size = 0;
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return containsIteratively((E) o);
+        super.size = 0;
     }
 
     public int height() {
@@ -140,39 +124,6 @@ public class BinaryTree<E extends Comparable<E>>
 
     public Iterator<E> iteratorPostOrder() {
         return new PostOrderIterator();
-    }
-
-    private boolean containsRecursively(Node node, E e) {
-        if (node == null) {
-            return false;
-        }
-
-        int comparison = e.compareTo(node.data);
-        if (comparison < 0) {
-            return containsRecursively(node.leftChild, e);
-        } else if (comparison > 0) {
-            return containsRecursively(node.rightChild, e);
-        } else {
-            return true;
-        }
-
-    }
-
-    private boolean containsIteratively(E e) {
-        Node current = root;
-        
-        while (current != null) {
-            int comparison = e.compareTo(current.data);
-            if (comparison < 0) {
-                current = current.leftChild;
-            } else if (comparison > 0) {
-                current = current.rightChild;
-            } else {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private void transplant(Node u, Node v) {

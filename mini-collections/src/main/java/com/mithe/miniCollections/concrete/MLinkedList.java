@@ -1,7 +1,8 @@
-package com.mithe.miniCollections;
+package com.mithe.miniCollections.concrete;
 
 import java.util.NoSuchElementException;
 
+import com.mithe.miniCollections.abstracts.MAbstractList;
 import com.mithe.miniCollections.interfaces.MListIterator;
 import com.mithe.miniCollections.interfaces.MQueue;
 

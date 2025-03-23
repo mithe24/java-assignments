@@ -1,15 +1,14 @@
-package com.mithe.miniCollections;
+package com.mithe.miniCollections.concrete;
 
 import java.util.NoSuchElementException;
 
-import com.mithe.miniCollections.interfaces.MList;
+import com.mithe.miniCollections.abstracts.MAbstractList;
 import com.mithe.miniCollections.interfaces.MListIterator;
 
 public class SinglyLinkedList<E>
-    implements MList<E> {
+    extends MAbstractList<E> {
     
-    private int size = 0;
-    private Node head = null;;
+    private Node head = null;
 
     private class Node {
 
@@ -54,11 +53,6 @@ public class SinglyLinkedList<E>
     }
 
     @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
     public boolean add(E e) {
         Node newNode = new Node(e);
         Node current = head;
@@ -72,7 +66,7 @@ public class SinglyLinkedList<E>
             current.next = newNode;
         }
 
-        size++;
+        super.size++;
         return true;
     }
 
@@ -89,7 +83,7 @@ public class SinglyLinkedList<E>
                     prev.next = current.next;
                 }
 
-                size--;
+                super.size--;
                 return true;
             } else {
                 prev = current;
@@ -102,7 +96,7 @@ public class SinglyLinkedList<E>
 
     @Override
     public E get(int index) {
-        if (index >= size) { 
+        if (index >= super.size) { 
             throw new IndexOutOfBoundsException("Index out of bounds of " + index); 
         }
 
@@ -117,11 +111,6 @@ public class SinglyLinkedList<E>
     }
 
     @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
     public MListIterator<E> iterator() {
         return new SinglyLinkedListIterator();
     }
@@ -129,21 +118,6 @@ public class SinglyLinkedList<E>
     @Override
     public void clear() {
         head = null;
-        size = 0;
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        Node current = head;
-
-        while (current != null) {
-            if (current.data.equals(o)) { 
-                return true; 
-            } else {
-                current = current.next;
-            }
-        }
-
-        return false;
+        super.size = 0;
     }
 }

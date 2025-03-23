@@ -1,22 +1,10 @@
-package com.mithe.miniCollections;
+package com.mithe.miniCollections.abstracts;
 
 import com.mithe.miniCollections.interfaces.MList;
 import com.mithe.miniCollections.interfaces.MListIterator;
 
 public abstract class MAbstractList<E>
     extends MAbstractCollection<E> implements MList<E>{
-
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
-    }
-    
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
 
     @Override
     public E get(int index) {
@@ -31,17 +19,5 @@ public abstract class MAbstractList<E>
         }
         
         return iterator.next();
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        MListIterator<E> iterator = iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().equals(o)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
