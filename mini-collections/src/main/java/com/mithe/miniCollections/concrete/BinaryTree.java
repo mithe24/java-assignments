@@ -11,14 +11,14 @@ import com.mithe.miniCollections.abstracts.MAbstractCollection;
 public class BinaryTree<E extends Comparable<E>>
     extends MAbstractCollection<E> {
 
-    private Node root;
+    protected Node root;
 
-    private class Node {
+    protected class Node {
 
-        private E data;
-        private Node leftChild = null, rightChild = null, parrent = null;
+        protected E data;
+        protected Node leftChild = null, rightChild = null, parrent = null;
 
-        private Node(E data) {
+        protected Node(E data) {
             this.data = data;
         }
     }
