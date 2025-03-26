@@ -130,7 +130,7 @@ public class TicTacToe {
     }
 
     @Override
-    protected Object clone() {
+    public TicTacToe clone() {
         return new TicTacToe(this);
     }
 }

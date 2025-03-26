@@ -1,8 +1,9 @@
-package com.mithe.searching;
+package com.mithe.searching.searchStrategies;
 
 import com.mithe.searching.interfaces.SearchStrategy;
 import com.mithe.searching.interfaces.FrontierStrategy;
 import com.mithe.searching.interfaces.Problem;
+import com.mithe.searching.Node;
 import com.mithe.searching.frontierStrategies.BestFirstFrontier;
 
 import java.util.ArrayList;

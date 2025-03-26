@@ -34,7 +34,7 @@ abstract class TicTacToeProblem
 
     @Override
     public TicTacToe result(TicTacToe state, Integer action) {
-        TicTacToe newState = new TicTacToe(state);
+        TicTacToe newState = state.clone();
         newState.move(action);
         return newState;
     }

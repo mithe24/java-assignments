@@ -1,4 +1,4 @@
-package com.mithe.searching;
+package com.mithe.searching.searchStrategies;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,7 @@ import com.mithe.searching.frontierStrategies.DFSFrontier;
 import com.mithe.searching.interfaces.FrontierStrategy;
 import com.mithe.searching.interfaces.Problem;
 import com.mithe.searching.interfaces.SearchStrategy;
+import com.mithe.searching.Node;
 
 public class IterativeDeepeningSearch<S,A>
     implements SearchStrategy<S,A> {
