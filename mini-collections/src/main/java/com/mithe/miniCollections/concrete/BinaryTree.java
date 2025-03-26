@@ -73,6 +73,27 @@ public class BinaryTree<E extends Comparable<E>>
     }
 
     @Override
+    public boolean contains(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+
+        E key = (E) o;
+        Node current = root;
+        while (current != null) {
+            if (current.leftChild != null && current.leftChild.data.compareTo(key) < 0) {
+                current = current.leftChild;
+            } else if (current.rightChild != null && current.rightChild.data.compareTo(key) > 0) {
+                current = current.rightChild;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
     public Iterator<E> iterator() {
         return new InOrderIterator();
     }
