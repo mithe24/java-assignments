@@ -8,4 +8,5 @@ public interface Problem<S,A> {
     Iterable<A> actions(S state);
     S result(S state, A action);
     double cost(S state, A action);
+    boolean isTerminal(S state);
 }

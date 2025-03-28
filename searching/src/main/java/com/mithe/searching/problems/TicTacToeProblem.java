@@ -1,6 +1,6 @@
 package com.mithe.searching.problems;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.mithe.searching.TicTacToe;
@@ -21,7 +21,7 @@ abstract class TicTacToeProblem
 
     @Override
     public Iterable<Integer> actions(TicTacToe state) {
-        List<Integer> validMoves = new ArrayList<>();
+        List<Integer> validMoves = new LinkedList<>();
 
         for (int i = 0; i < 9; i++) {
             if (state.isFree(i)) {
@@ -42,5 +42,10 @@ abstract class TicTacToeProblem
     @Override
     public double cost(TicTacToe state, Integer action) {
         return 1.0;
+    }
+
+    @Override
+    public boolean isTerminal(TicTacToe state) {
+        return state.gameOver();
     }
 }

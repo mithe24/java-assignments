@@ -189,7 +189,7 @@ public class BinaryTree<E extends Comparable<E>>
     private class InOrderIterator
         implements Iterator<E> {
 
-        Stack<Node> stack;
+        Stack<Node> stack = new Stack<>();
 
         private void pushAllLeft(Node node) {
             while (node != null) {
@@ -199,7 +199,6 @@ public class BinaryTree<E extends Comparable<E>>
         }
 
         public InOrderIterator() {
-            stack = new Stack<>();
             if (root != null) {
                 pushAllLeft(root);
             }
