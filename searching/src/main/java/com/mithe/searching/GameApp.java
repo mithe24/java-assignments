@@ -18,17 +18,17 @@ public class GameApp {
     static MinMaxSearch<TicTacToe, Integer> searchStrategy = new MinMaxSearch<>(evaluator);
 
     public static void main(String[] args) {
-        clear();
-        game.printBoard();
-        playerMove();
-
         while (!game.gameOver()) {
-            aiMove();
             clear();
             game.printBoard();
             playerMove();
+            if (!game.gameOver()) {
+                aiMove();
+            }
         }
 
+        clear();
+        game.printBoard();
         System.out.println("winner was " + game.won());
     } 
 
