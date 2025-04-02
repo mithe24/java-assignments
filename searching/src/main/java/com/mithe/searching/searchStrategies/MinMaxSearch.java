@@ -23,7 +23,7 @@ public class MinMaxSearch<S, A>
     public Node<S, A> search(Problem<S, A> problem, S startState) {
         Node<S, A> rootNode = new Node<>(startState, null, null, 0.0);
         Pair<Integer, Node<S, A>> result = maxValue(problem, rootNode);
-        return result == null ? null : result.value();
+        return result.value();
     }
 
     private Pair<Integer, Node<S, A>> maxValue(Problem<S, A> problem, Node<S, A> node) {
@@ -39,6 +39,7 @@ public class MinMaxSearch<S, A>
                 nextState = problem.result(node.state(), action);
                 childNode = new Node<>(nextState, node, action, 1.0);
                 valuePair = minValue(problem, childNode);
+
                 if (valuePair != null && valuePair.key() > bestValue) {
                     bestValue = valuePair.key();
                     bestNode = childNode;
@@ -62,6 +63,7 @@ public class MinMaxSearch<S, A>
                 nextState = problem.result(node.state(), action);
                 childNode = new Node<>(nextState, node, action, 1.0);
                 valuePair = maxValue(problem, childNode);
+
                 if (valuePair != null && valuePair.key() < bestValue) {
                     bestValue = valuePair.key();
                     bestNode = childNode;
